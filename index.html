@@ -1,8 +1,364 @@
-<html>
-  <head>
-    
-  </head>
-  <body>
-    
-  </body>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precios - TuHosting</title>
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --line:#dfe3eb;
+      --line-dark:#cdd3de;
+      --text:#2c3440;
+      --muted:#667085;
+      --heading:#1f2937;
+      --primary:#2d6cdf;
+      --primary-dark:#2458b5;
+      --ok:#22863a;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.45;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:20px 16px 48px;
+    }
+
+    /* Header simple tipo documentación/producto */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+    .logo{
+      font-size:22px;
+      font-weight:700;
+      color:#2b3a55;
+    }
+    .top-links a{
+      color:var(--primary);
+      text-decoration:none;
+      margin-left:16px;
+      font-size:14px;
+    }
+    .top-links a:hover{text-decoration:underline}
+
+    h1{
+      margin:8px 0 8px;
+      color:var(--heading);
+      font-size:34px;
+      line-height:1.2;
+    }
+    .subtitle{
+      color:var(--muted);
+      max-width:780px;
+      margin-bottom:20px;
+      font-size:15px;
+    }
+
+    /* Caja principal */
+    .pricing-box{
+      background:var(--card);
+      border:1px solid var(--line-dark);
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 1px 2px rgba(16,24,40,.04);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+    }
+
+    thead th{
+      background:#f1f4f9;
+      color:#243042;
+      font-weight:700;
+      font-size:14px;
+      border-bottom:1px solid var(--line-dark);
+      border-right:1px solid var(--line);
+      padding:14px 10px;
+      text-align:center;
+    }
+    thead th:first-child{
+      text-align:left;
+      width:30%;
+      padding-left:16px;
+    }
+    thead th:last-child{border-right:none}
+
+    tbody td{
+      border-top:1px solid var(--line);
+      border-right:1px solid var(--line);
+      padding:12px 10px;
+      text-align:center;
+      font-size:14px;
+      background:#fff;
+    }
+    tbody td:first-child{
+      text-align:left;
+      color:#3b4657;
+      font-weight:600;
+      padding-left:16px;
+      background:#fcfdff;
+    }
+    tbody tr:first-child td{
+      border-top:none;
+    }
+    tbody td:last-child{border-right:none}
+
+    .plan-name{
+      display:block;
+      font-size:16px;
+      margin-bottom:2px;
+      color:#1f2a3a;
+    }
+    .plan-price{
+      display:block;
+      font-size:22px;
+      font-weight:700;
+      color:#1c2735;
+      margin:4px 0 0;
+    }
+    .plan-period{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:400;
+    }
+
+    .ok{color:var(--ok); font-weight:700}
+    .muted{color:var(--muted)}
+
+    .actions td{
+      background:#fafbfd;
+      padding:14px 10px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:8px 14px;
+      border:1px solid #b9c4d7;
+      background:#fff;
+      color:#2a3a55;
+      border-radius:4px;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+    }
+    .btn:hover{background:#f4f7fc}
+    .btn.primary{
+      background:var(--primary);
+      border-color:var(--primary-dark);
+      color:#fff;
+    }
+    .btn.primary:hover{background:var(--primary-dark)}
+
+    /* Bloques tipo notas debajo de pricing */
+    .notes{
+      margin-top:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:6px;
+      padding:14px 16px;
+      font-size:14px;
+      color:#475467;
+    }
+    .notes h3{
+      margin:0 0 8px;
+      font-size:16px;
+      color:#243042;
+    }
+    .notes ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+    .notes li{margin:6px 0}
+
+    .faq{
+      margin-top:18px;
+    }
+    .faq details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:6px;
+      padding:10px 12px;
+      margin-bottom:8px;
+    }
+    .faq summary{
+      cursor:pointer;
+      font-weight:700;
+      color:#2d3a4f;
+    }
+    .faq p{
+      margin:8px 0 2px;
+      color:#556176;
+      font-size:14px;
+    }
+
+    footer{
+      margin-top:22px;
+      color:#7a8598;
+      font-size:12px;
+      text-align:center;
+    }
+
+    @media (max-width:900px){
+      .container{padding:16px 10px 32px}
+      h1{font-size:28px}
+      .pricing-box{overflow:auto}
+      table{min-width:860px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="logo">TuHosting</div>
+      <div class="top-links">
+        <a href="#">Características</a>
+        <a href="#">Documentación</a>
+        <a href="#">Soporte</a>
+      </div>
+    </div>
+
+    <h1>Planes y precios</h1>
+    <p class="subtitle">
+      Hosting de aplicaciones Python con planes claros y sin complicaciones.
+      Empieza gratis y sube de plan cuando necesites más recursos.
+    </p>
+
+    <section class="pricing-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>
+              <span class="plan-name">Beginner</span>
+              <span class="plan-price">$0</span>
+              <span class="plan-period">por mes</span>
+            </th>
+            <th>
+              <span class="plan-name">Hacker</span>
+              <span class="plan-price">$5</span>
+              <span class="plan-period">por mes</span>
+            </th>
+            <th>
+              <span class="plan-name">Developer</span>
+              <span class="plan-price">$12</span>
+              <span class="plan-period">por mes</span>
+            </th>
+            <th>
+              <span class="plan-name">Team</span>
+              <span class="plan-price">$49</span>
+              <span class="plan-period">por mes</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Aplicaciones web</td>
+            <td>1</td>
+            <td>3</td>
+            <td>10</td>
+            <td>Ilimitadas</td>
+          </tr>
+          <tr>
+            <td>Consolas / tareas</td>
+            <td>1</td>
+            <td>5</td>
+            <td>20</td>
+            <td>Ilimitadas</td>
+          </tr>
+          <tr>
+            <td>Almacenamiento</td>
+            <td>512 MB</td>
+            <td>5 GB</td>
+            <td>20 GB</td>
+            <td>100 GB</td>
+          </tr>
+          <tr>
+            <td>CPU/RAM</td>
+            <td>Compartido básico</td>
+            <td>Compartido</td>
+            <td>Rendimiento alto</td>
+            <td>Dedicado</td>
+          </tr>
+          <tr>
+            <td>Dominio personalizado</td>
+            <td class="muted">No</td>
+            <td><span class="ok">Sí</span></td>
+            <td><span class="ok">Sí</span></td>
+            <td><span class="ok">Sí</span></td>
+          </tr>
+          <tr>
+            <td>Certificados SSL</td>
+            <td class="muted">No</td>
+            <td><span class="ok">Sí</span></td>
+            <td><span class="ok">Sí</span></td>
+            <td><span class="ok">Sí</span></td>
+          </tr>
+          <tr>
+            <td>Backups automáticos</td>
+            <td class="muted">No</td>
+            <td>Semanal</td>
+            <td>Diario</td>
+            <td>Diario + retención</td>
+          </tr>
+          <tr>
+            <td>Soporte</td>
+            <td>Comunidad</td>
+            <td>Email</td>
+            <td>Prioritario</td>
+            <td>Prioritario + SLA</td>
+          </tr>
+          <tr class="actions">
+            <td>Empezar</td>
+            <td><a class="btn" href="#">Crear cuenta</a></td>
+            <td><a class="btn primary" href="#">Elegir plan</a></td>
+            <td><a class="btn" href="#">Elegir plan</a></td>
+            <td><a class="btn" href="#">Contactar ventas</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="notes">
+      <h3>Notas de facturación</h3>
+      <ul>
+        <li>Los planes se cobran de forma mensual y puedes cancelar cuando quieras.</li>
+        <li>Puedes cambiar de plan en cualquier momento sin perder configuración.</li>
+        <li>Si superas límites de recursos, te notificamos antes de aplicar restricciones.</li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <details>
+        <summary>¿Puedo iniciar en gratis y pasar a pago después?</summary>
+        <p>Sí. Tu proyecto se mantiene y solo se actualizan límites y recursos.</p>
+      </details>
+      <details>
+        <summary>¿Ofrecen descuento anual?</summary>
+        <p>Sí, puedes habilitar facturación anual para obtener descuento en planes de pago.</p>
+      </details>
+      <details>
+        <summary>¿Incluye base de datos?</summary>
+        <p>Sí, todos los planes permiten conexión a bases de datos administradas.</p>
+      </details>
+    </section>
+
+    <footer>© 2026 TuHosting</footer>
+  </div>
+</body>
 </html>
