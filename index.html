@@ -1,364 +1,1035 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Precios - TuHosting</title>
-  <style>
-    :root{
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --line:#dfe3eb;
-      --line-dark:#cdd3de;
-      --text:#2c3440;
-      --muted:#667085;
-      --heading:#1f2937;
-      --primary:#2d6cdf;
-      --primary-dark:#2458b5;
-      --ok:#22863a;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.45;
-    }
+    <title>Planes y precios | TuHosting</title>
 
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:20px 16px 48px;
-    }
+    <meta
+        name="description"
+        content="Planes de hosting para aplicaciones Python. Empieza gratis y aumenta tus recursos cuando tu proyecto lo necesite."
+    >
 
-    /* Header simple tipo documentación/producto */
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:20px;
-    }
-    .logo{
-      font-size:22px;
-      font-weight:700;
-      color:#2b3a55;
-    }
-    .top-links a{
-      color:var(--primary);
-      text-decoration:none;
-      margin-left:16px;
-      font-size:14px;
-    }
-    .top-links a:hover{text-decoration:underline}
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    h1{
-      margin:8px 0 8px;
-      color:var(--heading);
-      font-size:34px;
-      line-height:1.2;
-    }
-    .subtitle{
-      color:var(--muted);
-      max-width:780px;
-      margin-bottom:20px;
-      font-size:15px;
-    }
+    <style>
+        :root {
+            --primary: #1aa3cf;
+            --primary-dark: #1585aa;
+            --text: #242424;
+            --muted: #656565;
+            --bg: #ffffff;
 
-    /* Caja principal */
-    .pricing-box{
-      background:var(--card);
-      border:1px solid var(--line-dark);
-      border-radius:6px;
-      overflow:hidden;
-      box-shadow:0 1px 2px rgba(16,24,40,.04);
-    }
+            --green-box: #d9f5cc;
+            --green-border: #c7eab8;
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-    }
+            --developer: #389bb8;
+            --hacker: #4d9fa5;
+            --beginner: #668fa6;
+            --team: #947fc1;
 
-    thead th{
-      background:#f1f4f9;
-      color:#243042;
-      font-weight:700;
-      font-size:14px;
-      border-bottom:1px solid var(--line-dark);
-      border-right:1px solid var(--line);
-      padding:14px 10px;
-      text-align:center;
-    }
-    thead th:first-child{
-      text-align:left;
-      width:30%;
-      padding-left:16px;
-    }
-    thead th:last-child{border-right:none}
+            --light-blue: #edf5f8;
+            --light-purple: #f6f1fa;
+            --light-green: #f0f8f5;
+            --light-gray: #f5f7f8;
 
-    tbody td{
-      border-top:1px solid var(--line);
-      border-right:1px solid var(--line);
-      padding:12px 10px;
-      text-align:center;
-      font-size:14px;
-      background:#fff;
-    }
-    tbody td:first-child{
-      text-align:left;
-      color:#3b4657;
-      font-weight:600;
-      padding-left:16px;
-      background:#fcfdff;
-    }
-    tbody tr:first-child td{
-      border-top:none;
-    }
-    tbody td:last-child{border-right:none}
+            --border: #e4e4e4;
+        }
 
-    .plan-name{
-      display:block;
-      font-size:16px;
-      margin-bottom:2px;
-      color:#1f2a3a;
-    }
-    .plan-price{
-      display:block;
-      font-size:22px;
-      font-weight:700;
-      color:#1c2735;
-      margin:4px 0 0;
-    }
-    .plan-period{
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:400;
-    }
+        html {
+            box-sizing: border-box;
+        }
 
-    .ok{color:var(--ok); font-weight:700}
-    .muted{color:var(--muted)}
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.45;
+            font-size: 14px;
+        }
 
-    .actions td{
-      background:#fafbfd;
-      padding:14px 10px;
-    }
+        a {
+            text-decoration: none;
+        }
 
-    .btn{
-      display:inline-block;
-      padding:8px 14px;
-      border:1px solid #b9c4d7;
-      background:#fff;
-      color:#2a3a55;
-      border-radius:4px;
-      text-decoration:none;
-      font-size:13px;
-      font-weight:700;
-    }
-    .btn:hover{background:#f4f7fc}
-    .btn.primary{
-      background:var(--primary);
-      border-color:var(--primary-dark);
-      color:#fff;
-    }
-    .btn.primary:hover{background:var(--primary-dark)}
+        .top-strip {
+            background: #169bc8;
+            color: #ffffff;
+            min-height: 25px;
+            font-size: 12px;
+        }
 
-    /* Bloques tipo notas debajo de pricing */
-    .notes{
-      margin-top:16px;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:6px;
-      padding:14px 16px;
-      font-size:14px;
-      color:#475467;
-    }
-    .notes h3{
-      margin:0 0 8px;
-      font-size:16px;
-      color:#243042;
-    }
-    .notes ul{
-      margin:8px 0 0 18px;
-      padding:0;
-    }
-    .notes li{margin:6px 0}
+        .top-strip .container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 25px;
+        }
 
-    .faq{
-      margin-top:18px;
-    }
-    .faq details{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:6px;
-      padding:10px 12px;
-      margin-bottom:8px;
-    }
-    .faq summary{
-      cursor:pointer;
-      font-weight:700;
-      color:#2d3a4f;
-    }
-    .faq p{
-      margin:8px 0 2px;
-      color:#556176;
-      font-size:14px;
-    }
+        .top-strip a {
+            color: #ffffff;
+            margin-left: 14px;
+        }
 
-    footer{
-      margin-top:22px;
-      color:#7a8598;
-      font-size:12px;
-      text-align:center;
-    }
+        .top-strip a:hover {
+            text-decoration: underline;
+        }
 
-    @media (max-width:900px){
-      .container{padding:16px 10px 32px}
-      h1{font-size:28px}
-      .pricing-box{overflow:auto}
-      table{min-width:860px}
-    }
-  </style>
+        .page-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 28px 18px 60px;
+        }
+
+        .brand-area {
+            margin-bottom: 12px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #222222;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #676767;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #169bc8;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .brand-name .highlight {
+            color: #159dcc;
+        }
+
+        .brand-subtitle {
+            margin-left: 50px;
+            margin-top: -4px;
+            color: #444444;
+            font-size: 11px;
+        }
+
+        h1 {
+            color: #424242;
+            font-size: 36px;
+            font-weight: 400;
+            margin: 14px 0 12px;
+        }
+
+        .subtitle {
+            max-width: 820px;
+            color: #666666;
+            font-size: 15px;
+            margin-bottom: 22px;
+        }
+
+        .guarantee-box {
+            background: var(--green-box);
+            border: 1px solid var(--green-border);
+            padding: 18px 20px;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-box p {
+            margin: 0;
+            line-height: 1.55;
+        }
+
+        .guarantee-box strong {
+            font-weight: 700;
+        }
+
+        .plan-card {
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            background: #f5f8fa;
+        }
+
+        .plan-header {
+            color: #ffffff;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .plan-header.beginner {
+            background: var(--beginner);
+        }
+
+        .plan-header.hacker {
+            background: var(--hacker);
+        }
+
+        .plan-header.developer {
+            background: var(--developer);
+        }
+
+        .plan-header.team {
+            background: var(--team);
+        }
+
+        .plan-price {
+            font-size: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .plan-description {
+            background: rgba(255, 255, 255, 0.34);
+            text-align: center;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .plan-card.beginner-card {
+            background: #f2f6f8;
+        }
+
+        .plan-card.hacker-card {
+            background: #eef7f7;
+        }
+
+        .plan-card.developer-card {
+            background: var(--light-blue);
+        }
+
+        .plan-card.team-card {
+            background: var(--light-purple);
+        }
+
+        .plan-body {
+            padding: 17px 25px 22px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .feature {
+            text-align: center;
+            margin-bottom: 19px;
+            color: #333333;
+            line-height: 1.45;
+        }
+
+        .feature strong {
+            font-weight: 700;
+        }
+
+        .feature-small {
+            color: #666666;
+            font-size: 12px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .feature a {
+            color: #009ace;
+        }
+
+        .feature a:hover {
+            text-decoration: underline;
+        }
+
+        .plan-button-wrapper {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .plan-button {
+            display: inline-block;
+            background: #48bada;
+            border: 1px solid #159bc4;
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .plan-button:hover {
+            background: #159bc4;
+            color: #ffffff;
+        }
+
+        .plan-button.team-button {
+            background: #927cc1;
+            border-color: #7f68b0;
+        }
+
+        .plan-button.team-button:hover {
+            background: #7f68b0;
+        }
+
+        .pricing-row {
+            margin-bottom: 20px;
+        }
+
+        .annual-section {
+            margin-top: 28px;
+            background: #edf3f5;
+        }
+
+        .annual-header {
+            background: #3299b6;
+            color: #ffffff;
+            padding: 10px 12px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .annual-message {
+            text-align: center;
+            background: #dce8ec;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .annual-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .annual-body p {
+            color: #555555;
+            margin-bottom: 16px;
+        }
+
+        .details-section {
+            margin-top: 35px;
+        }
+
+        .section-title {
+            font-size: 25px;
+            font-weight: 400;
+            color: #444444;
+            margin-bottom: 18px;
+        }
+
+        .comparison-table {
+            border: 1px solid #dddddd;
+            margin-bottom: 0;
+        }
+
+        .comparison-table thead th {
+            background: #f1f4f5;
+            color: #333333;
+            font-size: 13px;
+            vertical-align: middle;
+            text-align: center;
+            padding: 12px 8px;
+        }
+
+        .comparison-table thead th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table tbody td {
+            font-size: 13px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 11px 8px;
+        }
+
+        .comparison-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .yes {
+            color: #198754;
+            font-weight: 700;
+        }
+
+        .no {
+            color: #888888;
+        }
+
+        .faq-section {
+            margin-top: 35px;
+        }
+
+        .accordion-button {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333333;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: #eef7fa;
+            color: #167fa1;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .accordion-body {
+            color: #555555;
+            font-size: 14px;
+        }
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            margin-top: 45px;
+            padding: 22px 0;
+            color: #808080;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 991px) {
+            .page-container {
+                padding-top: 22px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .plan-card {
+                min-height: 100%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .top-strip .container {
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            .top-strip a {
+                margin: 3px 7px;
+            }
+
+            .page-container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .guarantee-box {
+                padding: 15px;
+            }
+
+            .plan-header {
+                font-size: 16px;
+            }
+
+            .comparison-wrapper {
+                overflow-x: auto;
+            }
+
+            .comparison-table {
+                min-width: 760px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="topbar">
-      <div class="logo">TuHosting</div>
-      <div class="top-links">
-        <a href="#">Características</a>
-        <a href="#">Documentación</a>
-        <a href="#">Soporte</a>
-      </div>
+
+    <div class="top-strip">
+        <div class="container">
+            <a href="#">Send Feedback</a>
+            <a href="#">Forums</a>
+            <a href="#">Help</a>
+            <a href="#">Blog</a>
+            <a href="#">Pricing &amp; signup</a>
+            <a href="#">Log in</a>
+        </div>
     </div>
 
-    <h1>Planes y precios</h1>
-    <p class="subtitle">
-      Hosting de aplicaciones Python con planes claros y sin complicaciones.
-      Empieza gratis y sube de plan cuando necesites más recursos.
-    </p>
+    <main class="page-container">
 
-    <section class="pricing-box">
-      <table>
-        <thead>
-          <tr>
-            <th>Plan</th>
-            <th>
-              <span class="plan-name">Beginner</span>
-              <span class="plan-price">$0</span>
-              <span class="plan-period">por mes</span>
-            </th>
-            <th>
-              <span class="plan-name">Web Application </span>
-              <span class="plan-price">$10</span>
-              <span class="plan-period">por mes</span>
-            </th>
-            <th>
-              <span class="plan-name">Developer</span>
-              <span class="plan-price">$20</span>
-              <span class="plan-period">por mes</span>
-            </th>
-            <th>
-              <span class="plan-name">Team</span>
-              <span class="plan-price">$49</span>
-              <span class="plan-period">por mes</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Aplicaciones web</td>
-            <td>1</td>
-            <td>3</td>
-            <td>10</td>
-            <td>Ilimitadas</td>
-          </tr>
-          <tr>
-            <td>Consolas / tareas</td>
-            <td>1</td>
-            <td>5</td>
-            <td>20</td>
-            <td>Ilimitadas</td>
-          </tr>
-          <tr>
-            <td>Almacenamiento</td>
-            <td>512 MB</td>
-            <td>5 GB</td>
-            <td>20 GB</td>
-            <td>100 GB</td>
-          </tr>
-          <tr>
-            <td>CPU/RAM</td>
-            <td>Compartido básico</td>
-            <td>Compartido</td>
-            <td>Rendimiento alto</td>
-            <td>Dedicado</td>
-          </tr>
-          <tr>
-            <td>Dominio personalizado</td>
-            <td class="muted">No</td>
-            <td><span class="ok">Sí</span></td>
-            <td><span class="ok">Sí</span></td>
-            <td><span class="ok">Sí</span></td>
-          </tr>
-          <tr>
-            <td>Certificados SSL</td>
-            <td class="muted">No</td>
-            <td><span class="ok">Sí</span></td>
-            <td><span class="ok">Sí</span></td>
-            <td><span class="ok">Sí</span></td>
-          </tr>
-          <tr>
-            <td>Backups automáticos</td>
-            <td class="muted">No</td>
-            <td>Semanal</td>
-            <td>Diario</td>
-            <td>Diario + retención</td>
-          </tr>
-          <tr>
-            <td>Soporte</td>
-            <td>Comunidad</td>
-            <td>Email</td>
-            <td>Prioritario</td>
-            <td>Prioritario + SLA</td>
-          </tr>
-          <tr class="actions">
-            <td>Empezar</td>
-            <td><a class="btn" href="#">Crear cuenta</a></td>
-            <td><a class="btn primary" href="https://buy.stripe.com/4gM7sL0YW34qfXj5PJ4AU01">Elegir plan</a></td>
-            <td><a class="btn" href="#">Elegir plan</a></td>
-            <td><a class="btn" href="#">Contactar ventas</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+        <div class="brand-area">
+            <a href="#" class="brand">
+                <div class="brand-icon">
+                    PY
+                </div>
 
-    <section class="notes">
-      <h3>Notas de facturación</h3>
-      <ul>
-        <li>Los planes se cobran de forma mensual y puedes cancelar cuando quieras.</li>
-        <li>Puedes cambiar de plan en cualquier momento sin perder configuración.</li>
-        <li>Si superas límites de recursos, te notificamos antes de aplicar restricciones.</li>
-      </ul>
-    </section>
+                <div class="brand-name">
+                    <span class="highlight">Tu</span>Hosting
+                </div>
+            </a>
 
-    <section class="faq">
-      <details>
-        <summary>¿Puedo iniciar en gratis y pasar a pago después?</summary>
-        <p>Sí. Tu proyecto se mantiene y solo se actualizan límites y recursos.</p>
-      </details>
-      <details>
-        <summary>¿Ofrecen descuento anual?</summary>
-        <p>Sí, puedes habilitar facturación anual para obtener descuento en planes de pago.</p>
-      </details>
-      <details>
-        <summary>¿Incluye base de datos?</summary>
-        <p>Sí, todos los planes permiten conexión a bases de datos administradas.</p>
-      </details>
-    </section>
+            <div class="brand-subtitle">
+                Python Cloud Platform
+            </div>
+        </div>
 
-    <footer>© 2026 TuHosting</footer>
-  </div>
+        <h1>Planes y precios</h1>
+
+        <p class="subtitle">
+            Hosting de aplicaciones Python con planes claros y sin complicaciones.
+            Empieza gratis y aumenta los recursos de tu servidor cuando tu aplicación
+            o negocio lo necesite.
+        </p>
+
+        <section class="guarantee-box">
+            <p>
+                <strong>
+                    Todos nuestros planes de pago incluyen una garantía de devolución
+                    de dinero de 30 días.
+                </strong>
+
+                La facturación es mensual y puedes cancelar cuando quieras.
+                Los planes de pago incluyen dominios personalizados, SSL,
+                acceso a consola, tareas programadas y mayores recursos
+                para ejecutar tus aplicaciones Python.
+            </p>
+        </section>
+
+        <div class="row g-4 pricing-row">
+
+            <div class="col-12 col-md-6">
+                <section class="plan-card beginner-card">
+
+                    <div class="plan-header beginner">
+                        <span>Beginner</span>
+                        <span class="plan-price">$0/month</span>
+                    </div>
+
+                    <div class="plan-description">
+                        Para aprender Python y probar pequeñas aplicaciones
+                    </div>
+
+                    <div class="plan-body">
+
+                        <div class="feature">
+                            <strong>Python IDE en tu navegador</strong>
+                            <br>
+                            Consola Python básica incluida
+                        </div>
+
+                        <div class="feature">
+                            <strong>1 aplicación web</strong>
+                            <br>
+                            en
+                            <em>tu-usuario.pythonhosting.com</em>
+                        </div>
+
+                        <div class="feature">
+                            Recursos compartidos para proyectos pequeños
+                        </div>
+
+                        <div class="feature">
+                            <strong>512 MB</strong> de almacenamiento
+                        </div>
+
+                        <div class="feature">
+                            1 consola o tarea activa
+                        </div>
+
+                        <div class="feature">
+                            Soporte mediante documentación y comunidad
+                        </div>
+
+                        <div class="plan-button-wrapper">
+                            <a href="#" class="plan-button">
+                                Crear cuenta gratis
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <section class="plan-card hacker-card">
+
+                    <div class="plan-header hacker">
+                        <span>Hacker</span>
+                        <span class="plan-price">$10/month</span>
+                    </div>
+
+                    <div class="plan-description">
+                        Para desarrolladores y aplicaciones personales
+                    </div>
+
+                    <div class="plan-body">
+
+                        <div class="feature">
+                            <strong>Python IDE en tu navegador</strong>
+                            <br>
+                            Consolas Python y Bash
+                        </div>
+
+                        <div class="feature">
+                            Hasta <strong>3 aplicaciones web</strong>
+                            <br>
+                            con dominio personalizado
+                        </div>
+
+                        <div class="feature">
+                            Recursos compartidos para aplicaciones
+                            de tráfico moderado
+                        </div>
+
+                        <div class="feature">
+                            <strong>5 GB</strong> de almacenamiento
+                        </div>
+
+                        <div class="feature">
+                            Hasta <strong>5 consolas y tareas</strong>
+                        </div>
+
+                        <div class="feature">
+                            Certificado SSL y backups semanales
+                        </div>
+
+                        <div class="plan-button-wrapper">
+                            <a
+                                href="https://buy.stripe.com/4gM7sL0YW34qfXj5PJ4AU01"
+                                class="plan-button"
+                            >
+                                Elegir Hacker
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+        <div class="row g-4 pricing-row">
+
+            <div class="col-12 col-md-6">
+                <section class="plan-card developer-card">
+
+                    <div class="plan-header developer">
+                        <span>Developer</span>
+                        <span class="plan-price">$20/month</span>
+                    </div>
+
+                    <div class="plan-description">
+                        Ejecuta aplicaciones profesionales Python en la nube
+                    </div>
+
+                    <div class="plan-body">
+
+                        <div class="feature">
+                            <strong>Python IDE en tu navegador</strong>
+                            con consolas Python y Bash
+                        </div>
+
+                        <div class="feature">
+                            Hasta <strong>10 aplicaciones web</strong>
+                            <br>
+                            en dominios personalizados
+                        </div>
+
+                        <div class="feature">
+                            Alto rendimiento para aplicaciones
+                            y APIs profesionales
+
+                            <span class="feature-small">
+                                Flask, Django, FastAPI y otros frameworks
+                            </span>
+                        </div>
+
+                        <div class="feature">
+                            <strong>20 GB</strong> de almacenamiento
+                        </div>
+
+                        <div class="feature">
+                            Hasta <strong>20 consolas y tareas</strong>
+                            programadas
+                        </div>
+
+                        <div class="feature">
+                            SSL incluido, backups diarios
+                            y soporte prioritario
+                        </div>
+
+                        <div class="plan-button-wrapper">
+                            <a href="#" class="plan-button">
+                                Crear cuenta Developer
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <section class="plan-card team-card">
+
+                    <div class="plan-header team">
+                        <span>Team</span>
+                        <span class="plan-price">$49/month</span>
+                    </div>
+
+                    <div class="plan-description">
+                        Infraestructura para equipos y aplicaciones de producción
+                    </div>
+
+                    <div class="plan-body">
+
+                        <div class="feature">
+                            <strong>Entorno Python completo</strong>
+                            con múltiples desarrolladores
+                        </div>
+
+                        <div class="feature">
+                            <strong>Aplicaciones web ilimitadas</strong>
+                            <br>
+                            con dominios personalizados
+                        </div>
+
+                        <div class="feature">
+                            Recursos dedicados para escalar
+                            aplicaciones de producción
+                        </div>
+
+                        <div class="feature">
+                            <strong>100 GB</strong> de almacenamiento
+                        </div>
+
+                        <div class="feature">
+                            Consolas y tareas
+                            <strong>ilimitadas</strong>
+                        </div>
+
+                        <div class="feature">
+                            Backups diarios con retención,
+                            soporte prioritario y SLA
+                        </div>
+
+                        <div class="plan-button-wrapper">
+                            <a href="#" class="plan-button team-button">
+                                Contactar ventas
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+        <section class="annual-section">
+
+            <div class="annual-header">
+                Suscripciones anuales
+            </div>
+
+            <div class="annual-message">
+                Si contratas un año completo, obtienes 2 meses gratis
+                y solo pagas el equivalente a 10 meses.
+            </div>
+
+            <div class="annual-body">
+
+                <p>
+                    Ahorra en tus planes Hacker, Developer o Team
+                    seleccionando facturación anual.
+                </p>
+
+                <a href="#" class="plan-button">
+                    Crear una cuenta anual
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="details-section">
+
+            <h2 class="section-title">
+                Comparar planes
+            </h2>
+
+            <div class="comparison-wrapper">
+
+                <table class="table table-bordered comparison-table">
+
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Beginner</th>
+                            <th>Hacker</th>
+                            <th>Developer</th>
+                            <th>Team</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Aplicaciones web</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>10</td>
+                            <td>Ilimitadas</td>
+                        </tr>
+
+                        <tr>
+                            <td>Consolas / tareas</td>
+                            <td>1</td>
+                            <td>5</td>
+                            <td>20</td>
+                            <td>Ilimitadas</td>
+                        </tr>
+
+                        <tr>
+                            <td>Almacenamiento</td>
+                            <td>512 MB</td>
+                            <td>5 GB</td>
+                            <td>20 GB</td>
+                            <td>100 GB</td>
+                        </tr>
+
+                        <tr>
+                            <td>CPU / RAM</td>
+                            <td>Compartido básico</td>
+                            <td>Compartido</td>
+                            <td>Rendimiento alto</td>
+                            <td>Dedicado</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dominio personalizado</td>
+                            <td class="no">No</td>
+                            <td class="yes">Sí</td>
+                            <td class="yes">Sí</td>
+                            <td class="yes">Sí</td>
+                        </tr>
+
+                        <tr>
+                            <td>Certificado SSL</td>
+                            <td class="no">No</td>
+                            <td class="yes">Sí</td>
+                            <td class="yes">Sí</td>
+                            <td class="yes">Sí</td>
+                        </tr>
+
+                        <tr>
+                            <td>Backups automáticos</td>
+                            <td class="no">No</td>
+                            <td>Semanal</td>
+                            <td>Diario</td>
+                            <td>Diario + retención</td>
+                        </tr>
+
+                        <tr>
+                            <td>Soporte</td>
+                            <td>Comunidad</td>
+                            <td>Email</td>
+                            <td>Prioritario</td>
+                            <td>Prioritario + SLA</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <section class="faq-section">
+
+            <h2 class="section-title">
+                Preguntas frecuentes
+            </h2>
+
+            <div class="accordion" id="pricingFaq">
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqOne"
+                        >
+                            ¿Puedo comenzar con el plan gratuito y actualizar después?
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqOne"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#pricingFaq"
+                    >
+                        <div class="accordion-body">
+                            Sí. Puedes comenzar con Beginner y actualizar tu
+                            cuenta cuando necesites más almacenamiento,
+                            aplicaciones, CPU o funciones adicionales.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqTwo"
+                        >
+                            ¿Puedo cancelar mi plan cuando quiera?
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqTwo"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#pricingFaq"
+                    >
+                        <div class="accordion-body">
+                            Sí. Los planes mensuales pueden cancelarse
+                            cuando quieras desde tu cuenta.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqThree"
+                        >
+                            ¿Puedo utilizar mi propio dominio?
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqThree"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#pricingFaq"
+                    >
+                        <div class="accordion-body">
+                            Sí. Los planes Hacker, Developer y Team permiten
+                            utilizar dominios personalizados.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqFour"
+                        >
+                            ¿Puedo utilizar Flask, Django o FastAPI?
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqFour"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#pricingFaq"
+                    >
+                        <div class="accordion-body">
+                            Sí. Puedes desplegar aplicaciones desarrolladas
+                            con Flask, Django, FastAPI y otros frameworks
+                            compatibles con Python.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                        <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqFive"
+                        >
+                            ¿Incluyen bases de datos?
+                        </button>
+
+                    </h2>
+
+                    <div
+                        id="faqFive"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#pricingFaq"
+                    >
+                        <div class="accordion-body">
+                            Tus aplicaciones pueden conectarse a bases de
+                            datos compatibles con tu infraestructura, incluyendo
+                            servicios administrados externos.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 TuHosting. Todos los derechos reservados.
+        </footer>
+
+    </main>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
 </body>
 </html>
